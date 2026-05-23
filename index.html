@@ -9,7 +9,6 @@
             background: linear-gradient(to right, #4facfe, #00f2fe);
             text-align: center;
             margin: 0;
-            padding: 0;
         }
 
         h1 {
@@ -30,8 +29,8 @@
             width: 90%;
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ccc;
             border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
         button {
@@ -42,34 +41,20 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #007bff;
         }
 
         .card {
+            display: none;
             margin-top: 20px;
             padding: 20px;
             border-radius: 12px;
             background: #f9f9f9;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .card img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 3px solid #4facfe;
-        }
-
-        .card h2 {
-            margin: 10px 0 5px;
-        }
-
-        .card p {
-            color: #555;
         }
     </style>
 </head>
@@ -79,22 +64,35 @@
 <h1>User Profile Card Generator</h1>
 
 <div class="container">
-    <form method="POST" action="/">
-        <input type="text" name="name" placeholder="Enter Name" required>
-        <input type="text" name="bio" placeholder="Enter Bio" required>
-        <input type="text" name="image" placeholder="Enter Image URL" required>
 
-        <button type="submit">Generate</button>
-    </form>
+    <!-- No Flask POST now -->
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="bio" placeholder="Enter Bio">
+    <input type="text" id="image" placeholder="Enter Image URL">
 
-    {% if name %}
-    <div class="card">
-        <img src="{{ image }}" alt="Profile Image">
-        <h2>{{ name }}</h2>
-        <p>{{ bio }}</p>
+    <button onclick="generateCard()">Generate</button>
+
+    <div class="card" id="card">
+        <img id="img">
+        <h2 id="cardName"></h2>
+        <p id="cardBio"></p>
     </div>
-    {% endif %}
+
 </div>
+
+<script>
+function generateCard() {
+    let name = document.getElementById("name").value;
+    let bio = document.getElementById("bio").value;
+    let image = document.getElementById("image").value;
+
+    document.getElementById("cardName").innerText = name;
+    document.getElementById("cardBio").innerText = bio;
+    document.getElementById("img").src = image;
+
+    document.getElementById("card").style.display = "block";
+}
+</script>
 
 </body>
 </html>
