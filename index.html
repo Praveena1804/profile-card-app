@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile Card Generator</title>
+    <title>User Profile Card Generator</title>
+
     <style>
         body {
             font-family: Arial;
             text-align: center;
-            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            background: #f4f4f4;
         }
 
         h1 {
             margin-top: 20px;
         }
 
-        form {
-            margin: 20px;
-        }
-
-        input, textarea {
+        input {
+            margin: 8px;
             padding: 10px;
-            margin: 10px;
             width: 250px;
-            border-radius: 5px;
-            border: none;
         }
 
         button {
             padding: 10px 20px;
-            background: #333;
+            background: blue;
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
         }
 
         .card {
+            width: 300px;
             margin: 20px auto;
             padding: 20px;
-            width: 300px;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            display: none;
         }
 
         img {
@@ -49,25 +44,40 @@
             border-radius: 50%;
         }
     </style>
+
 </head>
+
 <body>
 
 <h1>User Profile Card Generator</h1>
 
-<form method="POST">
-    <input type="text" name="name" placeholder="Enter Name" required><br>
-    <textarea name="bio" placeholder="Enter Bio" required></textarea><br>
-    <input type="text" name="image" placeholder="Enter Image URL" required><br>
-    <button type="submit">Generate</button>
-</form>
+<input type="text" id="name" placeholder="Enter Name"><br>
+<input type="text" id="bio" placeholder="Enter Bio"><br>
+<input type="text" id="image" placeholder="Enter Image URL"><br>
 
-{% if name %}
-<div class="card">
-    <img src="{{ image }}" alt="Profile Image"><br><br>
-    <h2>{{ name }}</h2>
-    <p>{{ bio }}</p>
+<button onclick="generateCard()">Generate</button>
+
+<div class="card" id="profileCard">
+    <img id="profileImg" src="">
+    <h2 id="profileName"></h2>
+    <p id="profileBio"></p>
 </div>
-{% endif %}
+
+<script>
+function generateCard() {
+    let name = document.getElementById("name").value;
+    let bio = document.getElementById("bio").value;
+    let image = document.getElementById("image").value;
+
+    document.getElementById("profileName").innerText = name;
+    document.getElementById("profileBio").innerText = bio;
+    document.getElementById("profileImg").src = image;
+
+    document.getElementById("profileCard").style.display = "block";
+}
+</script>
 
 </body>
 </html>
+
+
