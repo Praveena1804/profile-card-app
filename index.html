@@ -1,81 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Profile Card Generator</title>
-
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: #f4f4f4;
-        }
-
-        h1 {
-            margin-top: 20px;
-        }
-
-        input {
-            margin: 8px;
-            padding: 10px;
-            width: 250px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .card {
-            width: 300px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px gray;
-            display: none;
-        }
-
-        img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-        }
-    </style>
-
+    <title>Profile Card</title>
 </head>
-
 <body>
 
 <h1>User Profile Card Generator</h1>
 
-<input type="text" id="name" placeholder="Enter Name"><br>
-<input type="text" id="bio" placeholder="Enter Bio"><br>
-<input type="text" id="image" placeholder="Enter Image URL"><br>
+<form method="POST">
+    <input type="text" name="name" placeholder="Enter Name"><br><br>
+    <input type="text" name="bio" placeholder="Enter Bio"><br><br>
+    <input type="text" name="image" placeholder="Enter Image URL"><br><br>
 
-<button onclick="generateCard()">Generate</button>
+    <button type="submit">Generate</button>
+</form>
 
-<div class="card" id="profileCard">
-    <img id="profileImg" src="">
-    <h2 id="profileName"></h2>
-    <p id="profileBio"></p>
-</div>
-
-<script>
-function generateCard() {
-    let name = document.getElementById("name").value;
-    let bio = document.getElementById("bio").value;
-    let image = document.getElementById("image").value;
-
-    document.getElementById("profileName").innerText = name;
-    document.getElementById("profileBio").innerText = bio;
-    document.getElementById("profileImg").src = image;
-
-    document.getElementById("profileCard").style.display = "block";
-}
-</script>
+{% if name %}
+    <h2>{{ name }}</h2>
+    <p>{{ bio }}</p>
+    <img src="{{ image }}" width="150">
+{% endif %}
 
 </body>
 </html>
